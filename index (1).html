@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FOX AI</title>
+<style>
+:root{--blue:#1769e0;--light:#eaf3ff;--ink:#17243a;--muted:#6c7b91}
+*{box-sizing:border-box}
+body{margin:0;background:#f4f8ff;color:var(--ink);font-family:Arial,sans-serif;min-height:100vh}
+.app{max-width:760px;margin:auto;min-height:100vh;background:white;display:flex;flex-direction:column}
+header{padding:20px 18px;border-bottom:1px solid #e4ecf7;display:flex;align-items:center;gap:12px}
+.logo{width:46px;height:46px;border-radius:15px;background:linear-gradient(145deg,#eaf3ff,#cfe2ff);display:grid;place-items:center;color:var(--blue);font-size:25px;font-weight:bold}
+h1{font-size:21px;margin:0;color:#145ac2}header p{margin:4px 0 0;color:var(--muted);font-size:12px}
+main{padding:22px 16px;flex:1}
+.welcome{background:linear-gradient(135deg,#f3f8ff,#e6f1ff);border:1px solid #d9e9ff;border-radius:18px;padding:18px;margin-bottom:18px}
+.welcome h2{margin:0 0 8px;font-size:19px}.welcome p{margin:0;color:#53657d;line-height:1.5;font-size:14px}
+.message{padding:12px 14px;border-radius:16px;margin:12px 0;max-width:88%;line-height:1.45;font-size:14px;white-space:pre-wrap}
+.bot{background:#eef5ff;border:1px solid #dceaff;margin-right:auto}
+.user{background:var(--blue);color:white;margin-left:auto}
+form{display:flex;gap:8px;padding:14px;border-top:1px solid #e4ecf7;background:#fff}
+input{min-width:0;flex:1;padding:14px;border:1px solid #cbd9eb;border-radius:14px;font-size:15px;outline:none}
+input:focus{border-color:var(--blue)}
+button{border:0;border-radius:14px;background:var(--blue);color:white;padding:0 18px;font-weight:bold;font-size:14px}
+.note{font-size:11px;color:#7b8798;text-align:center;padding:0 14px 12px}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="logo">F</div>
+  <div><h1>FOX AI</h1><p>Sua assistente pessoal • modo demonstração</p></div>
+</header>
+<main id="chat">
+  <section class="welcome">
+    <h2>Olá! Eu sou a FOX.</h2>
+    <p>Sou sua assistente pessoal. Posso ajudar a organizar ideias, estudar e aprender programação. Esta é a primeira versão de demonstração.</p>
+  </section>
+  <div class="message bot">Olá! Como posso ajudar você hoje?</div>
+</main>
+<form id="form">
+  <input id="prompt" autocomplete="off" placeholder="Digite uma mensagem..." aria-label="Sua mensagem">
+  <button type="submit">Enviar</button>
+</form>
+<div class="note">Protótipo visual: as respostas ainda são demonstrativas, não vêm de uma IA conectada.</div>
+</div>
+<script>
+const form=document.getElementById('form');
+const input=document.getElementById('prompt');
+const chat=document.getElementById('chat');
+form.addEventListener('submit',function(event){
+  event.preventDefault();
+  const text=input.value.trim();
+  if(!text)return;
+  const user=document.createElement('div');
+  user.className='message user';
+  user.textContent=text;
+  chat.appendChild(user);
+  const reply=document.createElement('div');
+  reply.className='message bot';
+  reply.textContent='Recebi sua mensagem! Ainda estou em modo de demonstração. Na próxima etapa vamos conectar a FOX a um serviço de IA permitido para você usar.';
+  chat.appendChild(reply);
+  input.value='';
+  chat.scrollTop=chat.scrollHeight;
+});
+</script>
+</body>
+</html>
